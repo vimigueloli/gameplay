@@ -1,10 +1,12 @@
 import { StyleSheet } from "react-native";
-import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import { theme } from "../../../global/styles/theme";
 
 export const styles = StyleSheet.create({
     container:{
-        paddingLeft: 23,
-        height: 120,
-    }
+        width: '80%',
+        height: 1,
+        backgroundColor: theme.colors.destaque3,
+        marginVertical: 21,
+        alignSelf: 'flex-end'
+    },
 });

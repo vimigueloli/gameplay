@@ -4,8 +4,10 @@ export const theme = {
         background2: '#060624',
         destaque: '#2F1599',
         destaque2: '#5757AA', 
+        destaque3: '#1A1A45',
         reading: '#DDE3F0',
         primary: '#E51C44',
+        on: '#50E45E',
         line: '#991f36'
     },
     fonts:{

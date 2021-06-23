@@ -8,12 +8,12 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 8,
-        marginRight: 8
+        marginRight: 15 
     },
 
     content:{
-        width: 100,
-        height: 116,
+        width: 102,
+        height: 118,
         backgroundColor: theme.colors.destaque,
         borderRadius: 8,
         alignContent: 'space-between',
@@ -22,23 +22,23 @@ export const styles = StyleSheet.create({
     },
 
     checked:{
-        width: 10,
-        height: 10,
-        backgroundColor: theme.colors.destaque2,
+        width: 13,
+        height: 13,
+        backgroundColor: theme.colors.primary,
         alignSelf: 'flex-end',
         marginRight: 7,
-        borderRadius: 3,
+        borderRadius: 8,
     },
 
     check:{
-        width: 10,
-        height: 10,
+        width: 12,
+        height: 12,
         backgroundColor: theme.colors.destaque2,
         alignSelf: 'flex-end',
         marginRight: 7,
-        borderRadius: 3,
+        borderRadius: 8,
         borderColor: theme.colors.primary,
-        borderWidth: 2,
+        borderWidth: 0.75,
     },
 
     title:{
