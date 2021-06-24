@@ -7,9 +7,11 @@ import { ButtonAdd } from '../../components/ButtonAdd';
 import { CategorySelection } from '../../components/CategorySelection';
 import { Appointments } from '../../components/appointment';
 import { Divisor } from '../../components/Divisor';
+import { useNavigation } from '@react-navigation/native';
 
 export function Home(){
     const [category, setCategory] = useState("");
+    const navigation = useNavigation();
     const appointments = [
         {
             id: '1',
@@ -39,16 +41,22 @@ export function Home(){
     function handleCategorySelection(categoryId: string){
         categoryId === category ? setCategory(""): setCategory(categoryId);
     }
+    function detalhes(){
+        navigation.navigate('AppointmentDetails')
+    }
+    function createAppointment(){
+        navigation.navigate('AppointmentCreate')
+    }
     return(
         <View>
             <View style={styles.header}>
                 <Profile />
-                <ButtonAdd />
+                <ButtonAdd onPress={createAppointment}/>
             </View>
             <CategorySelection categorySelected={category} setCategory={handleCategorySelection} />
             <View style={styles.content}>
                 <ListHeader title='PARTIDAS AGENDADAS' subtitle= 'total 6' />
-                <FlatList style={styles.matches} showsVerticalScrollIndicator={false} data={appointments} keyExtractor ={item => item.id}  renderItem={({item})=> (<Appointments data={item}/>)} ItemSeparatorComponent={() => <Divisor />}/>
+                <FlatList style={styles.matches} showsVerticalScrollIndicator={false} data={appointments} keyExtractor ={item => item.id}  renderItem={({item})=> (<Appointments data={item} onPress={detalhes}/>)} ItemSeparatorComponent={() => <Divisor />}/>
             </View>
         </View>
     );

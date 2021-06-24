@@ -14,28 +14,29 @@ export const styles = StyleSheet.create({
     content:{
         width: 102,
         height: 118,
-        backgroundColor: theme.colors.destaque,
         borderRadius: 8,
         alignContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: 7
+        paddingVertical: 20
     },
 
     checked:{
+        position: 'absolute',
+        top: 7,
+        right:7,
         width: 13,
         height: 13,
         backgroundColor: theme.colors.primary,
-        alignSelf: 'flex-end',
-        marginRight: 7,
         borderRadius: 8,
     },
 
     check:{
+        position: 'absolute',
+        top: 7,
+        right:7,
         width: 12,
         height: 12,
         backgroundColor: theme.colors.destaque2,
-        alignSelf: 'flex-end',
-        marginRight: 7,
         borderRadius: 8,
         borderColor: theme.colors.primary,
         borderWidth: 0.75,
