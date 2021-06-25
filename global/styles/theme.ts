@@ -9,7 +9,8 @@ export const theme = {
         reading: '#DDE3F0',
         primary: '#E51C44',
         on: '#50E45E',
-        line: '#991f36'
+        line: '#991f36',
+        overlay: 'rgba(0,0,0,0.7)'
     },
     fonts:{
         title700: 'Oswald_700Bold',
