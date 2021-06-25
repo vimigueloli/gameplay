@@ -8,10 +8,12 @@ import { CategorySelection } from '../../components/CategorySelection';
 import { Appointments } from '../../components/appointment';
 import { Divisor } from '../../components/Divisor';
 import { useNavigation } from '@react-navigation/native';
+import { Background } from '../../components/Background';
 
 export function Home(){
     const [category, setCategory] = useState("");
     const navigation = useNavigation();
+
     const appointments = [
         {
             id: '1',
@@ -36,8 +38,69 @@ export function Home(){
             category: '1',
             date: '22/06 às 20:40',
             description: 'é hoje que vamos ao challenger sem perder uma partida da m10'
+        },
+        {
+            id: '3',
+            guild:{
+                id:'1',
+                name:'Game Central',
+                icon: null,
+                owner: true
+            },
+            category: '4',
+            date: '22/06 às 20:40',
+            description: 'é hoje que vamos ao challenger sem perder uma partida da m10'
+        },
+        {
+            id: '5',
+            guild:{
+                id:'1',
+                name:'Game Central',
+                icon: null,
+                owner: true
+            },
+            category: '1',
+            date: '22/06 às 20:40',
+            description: 'é hoje que vamos ao challenger sem perder uma partida da m10'
+        },
+        {
+            id: '6',
+            guild:{
+                id:'1',
+                name:'Game Central',
+                icon: null,
+                owner: true
+            },
+            category: '1',
+            date: '22/06 às 20:40',
+            description: 'é hoje que vamos ao challenger sem perder uma partida da m10'
+        },
+        {
+            id: '7',
+            guild:{
+                id:'1',
+                name:'Game Central',
+                icon: null,
+                owner: true
+            },
+            category: '1',
+            date: '22/06 às 20:40',
+            description: 'é hoje que vamos ao challenger sem perder uma partida da m10'
+        },
+        {
+            id: '8',
+            guild:{
+                id:'1',
+                name:'Game Central',
+                icon: null,
+                owner: true
+            },
+            category: '1',
+            date: '22/06 às 20:40',
+            description: 'é hoje que vamos ao challenger sem perder uma partida da m10'
         }
     ]
+
     function handleCategorySelection(categoryId: string){
         categoryId === category ? setCategory(""): setCategory(categoryId);
     }
@@ -48,16 +111,18 @@ export function Home(){
         navigation.navigate('AppointmentCreate')
     }
     return(
-        <View>
+        <Background>
             <View style={styles.header}>
                 <Profile />
                 <ButtonAdd onPress={createAppointment}/>
             </View>
-            <CategorySelection categorySelected={category} setCategory={handleCategorySelection} />
+            <View >
+            <CategorySelection  categorySelected={category} setCategory={handleCategorySelection} />
+            </View>
             <View style={styles.content}>
                 <ListHeader title='PARTIDAS AGENDADAS' subtitle= 'total 6' />
-                <FlatList style={styles.matches} showsVerticalScrollIndicator={false} data={appointments} keyExtractor ={item => item.id}  renderItem={({item})=> (<Appointments data={item} onPress={detalhes}/>)} ItemSeparatorComponent={() => <Divisor />}/>
             </View>
-        </View>
+            <FlatList contentContainerStyle={{paddingBottom: 30}} style={styles.matches} showsVerticalScrollIndicator={false} data={appointments} keyExtractor ={item => item.id}  renderItem={({item})=> (<Appointments data={item} onPress={detalhes}/>)} ItemSeparatorComponent={() => <Divisor />}/>
+        </Background>
     );
 }

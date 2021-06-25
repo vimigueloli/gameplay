@@ -26,6 +26,14 @@ export function AppointmentCreate(){
         setGuild(guildSelected);
         setOpen(false);  
     }
+    function closeModal(){
+        setOpen(false)
+    }
+
+    function handleCategorySelection(categoryId: string){
+        setCategory(categoryId);
+    }
+    
     return(
         <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <ScrollView>
@@ -35,7 +43,7 @@ export function AppointmentCreate(){
                 CATEGORIA
             </Text>
             <View style={styles.lista}>
-            <CategorySelection  hasCheck setCategory={setCategory} categorySelected={category} />
+            <CategorySelection  hasCheck setCategory={handleCategorySelection} categorySelected={category} />
             </View>            
             <View style={styles.form}>
                 <RectButton onPress={openGuilds}>
@@ -87,7 +95,7 @@ export function AppointmentCreate(){
             </View>
         </View>
         </ScrollView>
-        <ModalView visible={open}>
+        <ModalView close={closeModal} visible={open}>
          <Guilds selectGuild={selectGuild}/>
         </ModalView>
         </KeyboardAvoidingView>

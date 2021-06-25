@@ -12,15 +12,15 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 42
+        marginBottom: 30
     },
 
     content:{
-        marginTop: 42,
+        marginTop: 15,
     },
 
     matches:{
         marginTop: 24,
-        marginLeft: 24
+        marginLeft: 24,        
     }
 });

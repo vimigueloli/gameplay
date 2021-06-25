@@ -17,12 +17,17 @@ export const styles = StyleSheet.create({
         fontFamily: theme.fonts.title700,
         color: theme.colors.reading,
         fontSize: 18,
-        marginBottom: 11
+        marginBottom: 5,
     },
     type:{
         fontFamily: theme.fonts.text400,
-        color: theme.colors.destaque,
+        color: theme.colors.background3,
         fontSize: 13,
-        marginBottom: 24
+        marginTop: 10,
+        opacity: 0.75
+    },
+    textos:{
+        justifyContent: 'flex-end',
+        paddingLeft: 10
     }
 });
