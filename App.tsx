@@ -6,6 +6,7 @@ import { Routes } from './src/routes'
 import AppLoading from 'expo-app-loading';
 import { StatusBar } from 'react-native';
 import { Background } from './src/components/Background';
+import { AuthContext } from './src/context/auth';
 
 
 export default function App(){
@@ -23,7 +24,9 @@ export default function App(){
   return(
     <Background>
       <StatusBar barStyle="light-content" />
-        < Routes/>
-    </Background>
+      <AuthContext.Provider value={{name: 'Victor', email: 'vipeso2016@gmail.com', avatar: 'https://github.com/vimigueloli.png' } }>
+        <Routes/>
+      </AuthContext.Provider>
+    </ Background>
     );
 } 

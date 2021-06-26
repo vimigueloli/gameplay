@@ -1,12 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Text, View, Image } from 'react-native';
 import { styles } from './styles';
 import IllustrationImg from '../../assets/illustration.png'
 import { ButtonIcon } from '../../components/ButtonIcon'
 import { useNavigation } from '@react-navigation/native';
+import { AuthContext } from '../../context/auth';
 
 export function SingIn(){
     const rotas = useNavigation();
+    const context= useContext(AuthContext);
 
     function handleSingIn(){
         rotas.navigate('Home')
