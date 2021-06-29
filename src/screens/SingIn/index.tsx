@@ -1,17 +1,22 @@
 import React, {useContext} from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, Alert, ActivityIndicator } from 'react-native';
 import { styles } from './styles';
 import IllustrationImg from '../../assets/illustration.png'
 import { ButtonIcon } from '../../components/ButtonIcon'
-import { useNavigation } from '@react-navigation/native';
-import { AuthContext } from '../../context/auth';
+import { useAuth} from '../../context/auth';
+import { theme } from '../../../global/styles/theme';
 
 export function SingIn(){
-    const rotas = useNavigation();
-    const context= useContext(AuthContext);
+    
+    const {loading, singIn} = useAuth();
 
-    function handleSingIn(){
-        rotas.navigate('Home')
+
+    async function handleSingIn(){
+        try{
+            await singIn();
+        } catch(error){
+            Alert.alert(error);
+        }
     }
 
     return(
@@ -27,7 +32,7 @@ export function SingIn(){
                 <Text style={styles.subtitulo}>
                     Forme equipes para jogar seus jogos favoritos
                 </Text>
-                <ButtonIcon title="Entrar com o Discord" onPress={handleSingIn} />
+                { loading ? <ActivityIndicator color={theme.colors.primary} /> : <ButtonIcon title="Entrar com o Discord" onPress={handleSingIn} />}
             </View>
         </View>
     );
