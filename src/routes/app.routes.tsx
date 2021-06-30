@@ -5,7 +5,7 @@ import { AppointmentDetails } from "../screens/AppointmentDetails";
 import { AppointmentCreate } from "../screens/AppointmentCreate";
 const {Navigator, Screen} = createStackNavigator();
 
-export function AuthRoutes(){
+export function AppRoutes(){
     return(
         <Navigator headerMode="none" screenOptions={{cardStyle: {backgroundColor: 'transparent'}}}>
             <Screen name= "Home" component={Home}/>

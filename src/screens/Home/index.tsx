@@ -1,115 +1,46 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import { View, FlatList, Text } from 'react-native';
 import { styles } from './styles';
 import { Profile } from '../../components/profile';
 import { ListHeader } from '../../components/ListHeader';
 import { ButtonAdd } from '../../components/ButtonAdd';
 import { CategorySelection } from '../../components/CategorySelection';
-import { Appointments } from '../../components/appointment';
+import { Appointments, AppointmentProps } from '../../components/appointment';
 import { Divisor } from '../../components/Divisor';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { Background } from '../../components/Background';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { COLLECTION_APPOINTMENTS } from '../../configs/storage';
+import { Load } from '../../components/Load';
 
 export function Home(){
     const [category, setCategory] = useState("");
+    const [loading, setLoading]= useState(true)
     const navigation = useNavigation();
-
-    const appointments = [
-        {
-            id: '1',
-            guild:{
-                id:'1',
-                name:'Game Central',
-                icon: null,
-                owner: true
-            },
-            category: '1',
-            date: '22/06 às 20:40',
-            description: 'é hoje que vamos ao challenger sem perder uma partida da m10'
-        },
-        {
-            id: '2',
-            guild:{
-                id:'1',
-                name:'Game Central',
-                icon: null,
-                owner: false
-            },
-            category: '1',
-            date: '22/06 às 20:40',
-            description: 'é hoje que vamos ao challenger sem perder uma partida da m10'
-        },
-        {
-            id: '3',
-            guild:{
-                id:'1',
-                name:'Game Central',
-                icon: null,
-                owner: true
-            },
-            category: '4',
-            date: '22/06 às 20:40',
-            description: 'é hoje que vamos ao challenger sem perder uma partida da m10'
-        },
-        {
-            id: '5',
-            guild:{
-                id:'1',
-                name:'Game Central',
-                icon: null,
-                owner: true
-            },
-            category: '1',
-            date: '22/06 às 20:40',
-            description: 'é hoje que vamos ao challenger sem perder uma partida da m10'
-        },
-        {
-            id: '6',
-            guild:{
-                id:'1',
-                name:'Game Central',
-                icon: null,
-                owner: true
-            },
-            category: '1',
-            date: '22/06 às 20:40',
-            description: 'é hoje que vamos ao challenger sem perder uma partida da m10'
-        },
-        {
-            id: '7',
-            guild:{
-                id:'1',
-                name:'Game Central',
-                icon: null,
-                owner: true
-            },
-            category: '1',
-            date: '22/06 às 20:40',
-            description: 'é hoje que vamos ao challenger sem perder uma partida da m10'
-        },
-        {
-            id: '8',
-            guild:{
-                id:'1',
-                name:'Game Central',
-                icon: null,
-                owner: true
-            },
-            category: '1',
-            date: '22/06 às 20:40',
-            description: 'é hoje que vamos ao challenger sem perder uma partida da m10'
-        }
-    ]
+    const [appointments, setAmppointments] = useState<AppointmentProps[]>([])
 
     function handleCategorySelection(categoryId: string){
         categoryId === category ? setCategory(""): setCategory(categoryId);
     }
-    function detalhes(){
-        navigation.navigate('AppointmentDetails')
+    function detalhes(appointmentSel: AppointmentProps){
+        navigation.navigate('AppointmentDetails',{appointmentSel})
     }
     function createAppointment(){
         navigation.navigate('AppointmentCreate')
     }
+    async function loadAppointments(){
+        const storage= await AsyncStorage.getItem(COLLECTION_APPOINTMENTS)
+        const response: AppointmentProps[] = storage ? JSON.parse(storage): []
+        if(category){
+            setAmppointments(response.filter(item => item.category === category))
+        }else{
+            setAmppointments(response)
+        }
+        setLoading(false)
+    }
+
+    useFocusEffect(useCallback(()=>{loadAppointments()},[category]))
+
     return(
         <Background>
             <View style={styles.header}>
@@ -119,10 +50,16 @@ export function Home(){
             <View >
             <CategorySelection  categorySelected={category} setCategory={handleCategorySelection} />
             </View>
-            <View style={styles.content}>
-                <ListHeader title='PARTIDAS AGENDADAS' subtitle= 'total 6' />
-            </View>
-            <FlatList contentContainerStyle={{paddingBottom: 30}} style={styles.matches} showsVerticalScrollIndicator={false} data={appointments} keyExtractor ={item => item.id}  renderItem={({item})=> (<Appointments data={item} onPress={detalhes}/>)} ItemSeparatorComponent={() => <Divisor />}/>
+
+            {
+                loading ? <Load/> :
+                <>  
+                    <View style={styles.content}>
+                        <ListHeader title='PARTIDAS AGENDADAS' subtitle= {`total ${appointments.length}`} />
+                    </View>
+                    <FlatList contentContainerStyle={{paddingBottom: 30}} style={styles.matches} showsVerticalScrollIndicator={false} data={appointments} keyExtractor ={item => item.id}  renderItem={({item})=> (<Appointments data={item} onPress={() => detalhes(item)}/>)} ItemSeparatorComponent={() => <Divisor />}/>
+                </>
+            }
         </Background>
     );
 }

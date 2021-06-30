@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         borderColor: theme.colors.destaque,
         borderWidth: 1,
-        borderRadius: 8,
+        borderRadius:45,
         paddingRight: 25,
         alignItems: 'center',
         overflow:  'hidden',
@@ -50,7 +50,7 @@ export const styles = StyleSheet.create({
         width: 68,
         height: 68,
         backgroundColor: theme.colors.destaque,
-        borderRadius:7,
+        borderRadius:45,
     },
     field:{
         width: '100%',
