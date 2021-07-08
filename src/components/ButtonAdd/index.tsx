@@ -7,7 +7,7 @@ import { styles } from './styles';
 export function ButtonAdd({... rest} : RectButtonProps){
     return(
         <RectButton style = {styles.container} {...rest}>
-            <MaterialCommunityIcons name="plus" style={styles.icon} />
+            <MaterialCommunityIcons name="plus" style={styles.icon} size={20}/>
         </RectButton>  
     );
 }

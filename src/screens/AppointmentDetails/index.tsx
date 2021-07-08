@@ -30,17 +30,17 @@ type GuildWidget ={
 export function AppointmentDetails(){
     const route = useRoute()
     const {appointmentSel} = route.params as Params
-    const [data, setData] = useState<GuildWidget>({} as GuildWidget)
+    const [membros, setMembros] = useState<MemberProps[]>([])
     const [loading, setLoading]= useState(true)
     async function fetchGuildInfo(){
         try{
-            const response = await api.get(`guilds/${appointmentSel.guild.id}/widget.json`)
-            setData(response.data)
-            Alert.alert(`${data.id}`)
-            console.log(data.members.keys)
+            const response = await api.get(`guilds/${appointmentSel.guild.id}/members`)
+            setMembros(response.data)
+            Alert.alert(`${membros}`)
             
         }catch{
             Alert.alert('Falha ao obter jogadores')
+            Alert.alert(`${appointmentSel.guild.id}`)
         }finally{
             setLoading(false)
         }
@@ -70,7 +70,7 @@ export function AppointmentDetails(){
                 <>
                     <ListHeader title='Jogadores' subtitle='total 3'/>
                     <View >
-                        <FlatList style={styles.members} data={data.members} keyExtractor={item => item.id} renderItem={({item}) => (<Member data ={item}/>)} ItemSeparatorComponent={() => <Divisor centro={true}/>}/>:
+                        {/*<FlatList style={styles.members} data={data.members} keyExtractor={item => item.id} renderItem={({item}) => (<Member data ={item}/>)} ItemSeparatorComponent={() => <Divisor centro={true}/>}/>:*/}
                     </View>
                 </>
             }

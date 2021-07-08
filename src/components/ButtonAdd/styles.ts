@@ -3,10 +3,10 @@ import { theme } from "../../../global/styles/theme";
 
 export const styles = StyleSheet.create({
     container:{
-        height: 50,
-        width: 50,
+        height: 57,
+        width: 57,
         backgroundColor: theme.colors.primary,
-        borderRadius: 8,
+        borderRadius: 30,
         alignItems: 'center',
         justifyContent: 'center'
     },
