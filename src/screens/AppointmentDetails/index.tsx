@@ -30,18 +30,17 @@ type GuildWidget ={
 export function AppointmentDetails(){
     const route = useRoute()
     const {appointmentSel} = route.params as Params
-    const [membros, setMembros] = useState<MemberProps[]>([])
+    const [membros, setMembros] = useState([])
     const [loading, setLoading]= useState(true)
     async function fetchGuildInfo(){
         try{
-            const response = await api.get(`guilds/${appointmentSel.guild.id}/members`)
+            const response = await api.get(`guilds/${appointmentSel.guild.id}/preview`)
             setMembros(response.data)
             Alert.alert(`${membros}`)
-            
         }catch{
-            Alert.alert('Falha ao obter jogadores')
-            Alert.alert(`${appointmentSel.guild.id}`)
+            Alert.alert(`ainda não`)
         }finally{
+            console.log(appointmentSel.guild.id)
             setLoading(false)
         }
     }
