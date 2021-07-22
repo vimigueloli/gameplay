@@ -5,4 +5,4 @@
 ![GitHub](https://img.shields.io/github/license/vimigueloli/gameplay?color=blue)
 
 
-![alt text](.\NLW-Together\gameplay\assets\tela login.jpghttp://url/to/img.png)
+![alt text](https://github.com/vimigueloli/gameplay/blob/master/assets/login.jpg?raw=true)
